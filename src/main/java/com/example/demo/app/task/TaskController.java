@@ -47,10 +47,11 @@ public class TaskController {
     public String task(TaskForm taskForm, Model model) {
     	
     	//新規登録か更新かを判断する仕掛け
-        
+    	taskForm.setNewTask(true);
         //Taskのリストを取得する
-        
-        model.addAttribute("list", "");
+        List<Task> list = taskService.findAll();
+    	
+        model.addAttribute("list", list);
         model.addAttribute("title", "タスク一覧");
 
         return "task/index";

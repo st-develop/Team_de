@@ -31,13 +31,11 @@ public class TaskDaoImpl implements TaskDao {
 				+ "type, comment FROM task "
 				+ "INNER JOIN task_type ON task.type_id = task_type.id";
 		
-		//削除してください
-		
 		//タスク一覧をMapのListで取得
-		List<Map<String, Object>> resultList = null;
+		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
 		
 		//return用の空のListを用意
-		List<Task> list = null;
+		List<Task> list = new ArrayList<Task>();
 		
 		//二つのテーブルのデータをTaskにまとめる
 		for(Map<String, Object> result : resultList) {
@@ -56,6 +54,7 @@ public class TaskDaoImpl implements TaskDao {
 			type.setComment((String)result.get("comment"));
 			
 			//TaskにTaskTypeをセット
+			task.setTaskType(type);
 			
 			list.add(task);
 		}
@@ -70,7 +69,7 @@ public class TaskDaoImpl implements TaskDao {
 				+ "WHERE task.id = ?";
 		
 		//タスクを一件取得
-		Map<String, Object> result = null;
+		Map<String, Object> result = jdbcTemplate.queryForMap(sql, id);
 		
 		Task task = new Task();
 		task.setId((int)result.get("id"));
@@ -86,10 +85,8 @@ public class TaskDaoImpl implements TaskDao {
 		type.setComment((String)result.get("comment"));
 		task.setTaskType(type);
 		
-		//削除してください
-		Optional<Task> taskOpt = null;
-		
 		//taskをOptionalでラップする
+		Optional<Task> taskOpt = Optional.ofNullable(task);
 		
 		return taskOpt;
 	}
