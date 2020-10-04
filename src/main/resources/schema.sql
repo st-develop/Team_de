@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS profile(
  challenge VARCHAR(200),
  work_history VARCHAR(200),
  skill VARCHAR(200),
- hobby VARCHAR(200)
+ hobby VARCHAR(200),
+ url VARCHAR(200)
 );
 
