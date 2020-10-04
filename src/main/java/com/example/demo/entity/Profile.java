@@ -48,6 +48,11 @@ public class Profile implements Serializable{
 	private String hobby;
 
 	/**
+	 * url URL
+	 */
+	private String url ;
+
+	/**
 	 *idの取得
 	 *
 	 * @return id
@@ -191,7 +196,21 @@ public class Profile implements Serializable{
 		this.hobby = hobby;
 	}
 
+	/**
+	 * URLの取得
+	 * @return URL
+	 */
+	public String getUrl() {
+		return url;
+	}
 
+	/**
+	 * URLの設定
+	 * @param url
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 
 }
