@@ -27,6 +27,20 @@ public class DeptRegisterController {
 		return "deptRegister";
 	}
 	
+	@GetMapping("/JobList")
+	public String getJobList(@ModelAttribute DeptRegisterForm form, Model model) {
+		model.addAttribute("contents", "deptList :: deptList_contents");
+		
+		List<Dept> deptList = deptRegisterService.selectMany();
+		
+		model.addAttribute("deptList",deptList);
+		
+		int count = deptRegisterService.count();
+		model.addAttribute("deptListCount", count);
+		
+		
+		return "JobList";
+	}
 	
 
 	@PostMapping(value = "/deptRegister", params="register")
