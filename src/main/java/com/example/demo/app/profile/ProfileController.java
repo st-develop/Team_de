@@ -56,8 +56,8 @@ public class ProfileController {
 
         return "profile/Input";
     }
-    
-    
+
+
 
 
     /**
@@ -125,10 +125,12 @@ public class ProfileController {
 
     	rep.saveAndFlush(profile);
 
-    	model.addAttribute("profiles", rep.findAll());
-    	model.addAttribute("count", rep.count());
+    	//プロフィールを取得する
+    	Profile profileDetail = service.getProfile(profile.getId());
 
-    	return "profile/list";
+    	model.addAttribute("profile", profileDetail);
+
+    	return "profile/detail";
     }
 
     /**
